@@ -31,10 +31,10 @@ public class SecondarySortDriver {
 	 */
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		//本地调试用
-		args = new String[] {
+		/*		args = new String[] {
 				"hdfs://hadoopslave1:9000/secondarysort/input", 
 				"hdfs://hadoopslave1:9000/secondarysort/output" 
-				};
+				};*/
 		// hadoop默认配置参数
 		Configuration conf = new Configuration();
 		// conf.set("fs.defaultFS", "hdfs://hadoopslave1:9000");
