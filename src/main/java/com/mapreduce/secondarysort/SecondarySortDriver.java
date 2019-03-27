@@ -6,6 +6,7 @@ package com.mapreduce.secondarysort;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -43,6 +44,16 @@ public class SecondarySortDriver {
 		Job job = Job.getInstance(conf);
 		job.setJarByClass(SecondarySortDriver.class);
 
+		
+		Path outPath = new Path(args[1]);
+		// 输出目录如果存在自动删除
+		FileSystem fsl = FileSystem.get(conf);
+		FileSystem fsh = outPath.getFileSystem(conf);
+		if (fsh.exists(outPath)) {
+			fsh.delete(outPath, true);
+		}
+
+		
 		// 数据的输入路径
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 
